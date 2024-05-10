@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "109398497549",
+    "project_id": "equmaintain",
+    "storage_bucket": "equmaintain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109398497549:android:e97d0fa601ae88346ef844",
+        "android_client_info": {
+          "package_name": "com.example.equmaintain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy3aEZRKSDXwFJesx41UElWGzRJRLEVvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
