@@ -1,4 +1,6 @@
 // import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -26,6 +28,7 @@ void main() {
 
 class Thirdpage extends StatelessWidget {
   Thirdpage({super.key});
+  final anglecontroller = TextEditingController();
 
   // This widget is the root of your application.
   @override
@@ -106,7 +109,7 @@ class Thirdpage extends StatelessWidget {
                             ]),
                         width: 200,
                         height: 85,
-                        child: const Row(
+                        child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -114,6 +117,7 @@ class Thirdpage extends StatelessWidget {
                                   width: 130,
                                   height: 100,
                                   child: TextField(
+                                      controller: anglecontroller,
                                       style: TextStyle(
                                         fontSize: 40,
                                         color: Colors.white,
@@ -296,7 +300,9 @@ class Thirdpage extends StatelessWidget {
                                     icon: const Icon(Icons.keyboard_arrow_down,
                                         size: 40),
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      sendData(anglecontroller.text);
+                                    },
                                   ),
                                 ])),
                       ],
@@ -394,5 +400,11 @@ class Thirdpage extends StatelessWidget {
                 )
               ]),
             )));
+  }
+
+  void sendData(String data) {
+    if (MainPage.connection?.isConnected ?? false) {
+      MainPage.connection?.output.add(ascii.encode(data));
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
+  static BluetoothConnection? connection;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -15,7 +16,6 @@ class _MainPageState extends State<MainPage> {
   final _bluetooth = FlutterBluetoothSerial.instance;
   bool _bluetoothState = false;
   bool _isConnecting = false;
-  BluetoothConnection? _connection;
   List<BluetoothDevice> _devices = [];
   BluetoothDevice? _deviceConnected;
   int times = 0;
@@ -26,16 +26,16 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _receiveData() {
-    _connection?.input?.listen((event) {
+    MainPage.connection?.input?.listen((event) {
       if (String.fromCharCodes(event) == "p") {
         setState(() => times = times + 1);
       }
     });
   }
 
-  void _sendData(String data) {
-    if (_connection?.isConnected ?? false) {
-      _connection?.output.add(ascii.encode(data));
+  void sendData(String data) {
+    if (MainPage.connection?.isConnected ?? false) {
+      MainPage.connection?.output.add(ascii.encode(data));
     }
   }
 
@@ -112,10 +112,10 @@ class _MainPageState extends State<MainPage> {
     return ListTile(
       tileColor: Colors.black12,
       title: Text("Conectado a: ${_deviceConnected?.name ?? "ninguno"}"),
-      trailing: _connection?.isConnected ?? false
+      trailing: MainPage.connection?.isConnected ?? false
           ? TextButton(
               onPressed: () async {
-                await _connection?.finish();
+                await MainPage.connection?.finish();
                 setState(() => _deviceConnected = null);
               },
               child: const Text("Desconectar"),
@@ -144,8 +144,9 @@ class _MainPageState extends State<MainPage> {
                           onPressed: () async {
                             setState(() => _isConnecting = true);
 
-                            _connection = await BluetoothConnection.toAddress(
-                                device.address);
+                            MainPage.connection =
+                                await BluetoothConnection.toAddress(
+                                    device.address);
                             _deviceConnected = device;
                             _devices = [];
                             _isConnecting = false;
@@ -193,7 +194,7 @@ class _MainPageState extends State<MainPage> {
                 child: ActionButton(
                   text: "Encender",
                   color: Colors.green,
-                  onTap: () => _sendData("1"),
+                  onTap: () => sendData("1"),
                 ),
               ),
               const SizedBox(width: 8.0),
@@ -201,7 +202,7 @@ class _MainPageState extends State<MainPage> {
                 child: ActionButton(
                   color: Colors.red,
                   text: "Apagar",
-                  onTap: () => _sendData("0"),
+                  onTap: () => sendData("0"),
                 ),
               ),
             ],
