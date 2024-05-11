@@ -1,16 +1,17 @@
 // import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
+import 'package:equmaintain/appprog.dart';
+import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:get/get.dart';
 import 'main.dart';
 import 'first.dart';
-import 'second.dart';
-import 'third.dart';
+import 'signin/second.dart';
 import 'fourth.dart';
 import 'fifth.dart';
-import 'sixth.dart';
-import 'firebase_auth_implementation/useless/seventh.dart';
-import 'firebase_auth_implementation/useless/eigtht.dart';
-
-//angle screen patient
+//Patient angle screen = third
 
 void main() {
   runApp(MaterialApp(
@@ -19,18 +20,16 @@ void main() {
       '/': (context) => const MyApp(),
       '/first': (context) => const Firstpage(),
       // '/second': (context) =>  Secondpage(),
-      '/third': (context) => Thirdpage(),
+    //  '/third': (context) => Thirdpage(),
       '/fourth': (context) => const Fourthpage(),
-      //'/fifth': (context) => const Fifthpage(),
-      '/Sixth': (context) => const Sixthpage(),
-      //'/Seventh': (context) => const Seventhpage(),
-      //'/eigtht': (context) => const Eigthtpage(),
+      // '/fifth': (context) => const Fifthpage(),
     },
   ));
 }
 
 class Ninthpage extends StatelessWidget {
-  const Ninthpage({super.key});
+  Ninthpage({super.key});
+  final anglecontroller = TextEditingController();
 
   // This widget is the root of your application.
   @override
@@ -38,6 +37,7 @@ class Ninthpage extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+
             backgroundColor: Colors.teal[300],
             body: SingleChildScrollView(
               child: Column(children: [
@@ -49,15 +49,17 @@ class Ninthpage extends StatelessWidget {
                         height: 50,
                       ),
                       Row(children: [
+
                         const SizedBox(width: 10),
                         IconButton(
+
                           icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Sixthpage()));
+                                    builder: (context) => const appprog()));
                           },
                         ),
                         const SizedBox(width: 285),
@@ -75,7 +77,7 @@ class Ninthpage extends StatelessWidget {
                   width: 500,
                   decoration: const BoxDecoration(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20)),
+                    BorderRadius.vertical(top: Radius.circular(20)),
                     color: Colors.white,
                   ),
                   child: Column(children: [
@@ -108,18 +110,28 @@ class Ninthpage extends StatelessWidget {
                             ]),
                         width: 200,
                         height: 85,
-                        child: const Row(
+                        child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
                                   width: 130,
                                   height: 100,
-                                  child: Text('60`',
-                                      textAlign: TextAlign.center,
+                                  child: TextField(
+                                      controller: anglecontroller,
                                       style: TextStyle(
-                                        fontSize: 60,
+                                        fontSize: 40,
                                         color: Colors.white,
-                                      )))
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      textAlignVertical: TextAlignVertical.top,
+                                      decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          hintText: 'Angle',
+                                          border: InputBorder.none,
+                                          labelStyle: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.teal))))
                             ])),
                     const SizedBox(
                       height: 50,
@@ -160,7 +172,10 @@ class Ninthpage extends StatelessWidget {
                                     icon: const Icon(Icons.keyboard_arrow_up,
                                         size: 40),
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      sendData(anglecontroller.text);                   //up
+                                      sendData("U");
+                                    },
                                   ),
                                 ])),
                       ],
@@ -197,10 +212,13 @@ class Ninthpage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.keyboard_arrow_left,
+                                icon: const Icon(Icons.keyboard_arrow_left,                          //left
                                     size: 40),
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  sendData(anglecontroller.text);
+                                  sendData("L");
+                                },
                               ),
                             ]),
                       ),
@@ -244,10 +262,13 @@ class Ninthpage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.keyboard_arrow_right,
+                                  icon: const Icon(Icons.keyboard_arrow_right,                //right
                                       size: 40),
                                   color: Colors.white,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    sendData(anglecontroller.text);
+                                    sendData("R");
+                                  },
                                 ),
                               ]))
                     ]),
@@ -286,10 +307,13 @@ class Ninthpage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_down,
+                                    icon: const Icon(Icons.keyboard_arrow_down,                               //Down
                                         size: 40),
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      sendData(anglecontroller.text);
+                                      sendData("D");
+                                    },
                                   ),
                                 ])),
                       ],
@@ -298,47 +322,100 @@ class Ninthpage extends StatelessWidget {
                       height: 160,
                     ),
                     Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(60),
-                                bottom: Radius.circular(60)),
-                            color: Colors.white24,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(
-                                  -2.0,
-                                  0.0,
-                                ),
-                                blurRadius: 3.0,
-                                spreadRadius: -5.0,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(60),
+                              bottom: Radius.circular(60)),
+                          color: Colors.white24,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(
+                                -2.0,
+                                0.0,
                               ),
-                              BoxShadow(
-                                color: Colors.teal,
-                                offset: Offset(-1.0, -3.0),
-                                blurRadius: 3.0,
-                                spreadRadius: -5.0,
+                              blurRadius: 3.0,
+                              spreadRadius: -5.0,
+                            ),
+                            BoxShadow(
+                              color: Colors.teal,
+                              offset: Offset(-1.0, -3.0),
+                              blurRadius: 3.0,
+                              spreadRadius: -5.0,
+                            ),
+                            //BoxShadow
+                          ]),
+                      width: 120,
+                      height: 60,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: Colors.white),
+                                  onPressed: () {},
+                                  child: const Text('Apply',
+                                      style: TextStyle(fontSize: 20))),
+                            )
+                          ]),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(60),
+                              bottom: Radius.circular(60)),
+                          color: Colors.white24,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(
+                                -2.0,
+                                0.0,
                               ),
-                              //BoxShadow
-                            ]),
-                        width: 120,
-                        height: 60,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                child: TextButton(
-                                    style: TextButton.styleFrom(
-                                        foregroundColor: Colors.white),
-                                    onPressed: () {},
-                                    child: const Text('Apply',
-                                        style: TextStyle(fontSize: 20))),
-                              ),
-                            ])),
+                              blurRadius: 3.0,
+                              spreadRadius: -5.0,
+                            ),
+                            BoxShadow(
+                              color: Colors.teal,
+                              offset: Offset(-1.0, -3.0),
+                              blurRadius: 3.0,
+                              spreadRadius: -5.0,
+                            ),
+                            //BoxShadow
+                          ]),
+                      width: 200,
+                      height: 50,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: Colors.white),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const MainPage()));
+                                  },
+                                  child: const Text('connect bluetooth',
+                                      style: TextStyle(fontSize: 20))),
+                            )
+                          ]),
+                    ),
                   ]),
                 )
               ]),
             )));
+  }
+
+  void sendData(String data) {
+    if (MainPage.connection?.isConnected ?? false) {
+      MainPage.connection?.output.add(ascii.encode(data));
+    }
   }
 }

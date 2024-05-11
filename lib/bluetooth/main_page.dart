@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Flutter ❤️ Arduino'),
+        title: const Text('Bluetooth'),
       ),
       body: Column(
         children: [
@@ -103,7 +103,7 @@ class _MainPageState extends State<MainPage> {
       },
       tileColor: Colors.black26,
       title: Text(
-        _bluetoothState ? "Bluetooth encendido" : "Bluetooth apagado",
+        _bluetoothState ? "Bluetooth : on" : "Bluetooth : off",
       ),
     );
   }
@@ -111,18 +111,18 @@ class _MainPageState extends State<MainPage> {
   Widget _infoDevice() {
     return ListTile(
       tileColor: Colors.black12,
-      title: Text("Conectado a: ${_deviceConnected?.name ?? "ninguno"}"),
+      title: Text("State: ${_deviceConnected?.name ?? "no devices connected"}"),
       trailing: MainPage.connection?.isConnected ?? false
           ? TextButton(
               onPressed: () async {
                 await MainPage.connection?.finish();
                 setState(() => _deviceConnected = null);
               },
-              child: const Text("Desconectar"),
+              child: const Text("Lose connection"),
             )
           : TextButton(
               onPressed: _getDevices,
-              child: const Text("Ver dispositivos"),
+              child: const Text("Available Devices"),
             ),
     );
   }
@@ -140,7 +140,7 @@ class _MainPageState extends State<MainPage> {
                       ListTile(
                         title: Text(device.name ?? device.address),
                         trailing: TextButton(
-                          child: const Text('conectar'),
+                          child: const Text('Connected'),
                           onPressed: () async {
                             setState(() => _isConnecting = true);
 
@@ -167,13 +167,13 @@ class _MainPageState extends State<MainPage> {
   Widget _inputSerial() {
     return ListTile(
       trailing: TextButton(
-        child: const Text('reiniciar'),
+        child: const Text('Reset'),
         onPressed: () => setState(() => times = 0),
       ),
       title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
-          "Pulsador presionado (x$times)",
+          "click (x$times)",
           style: const TextStyle(fontSize: 18.0),
         ),
       ),
@@ -186,13 +186,13 @@ class _MainPageState extends State<MainPage> {
       color: Colors.black12,
       child: Column(
         children: [
-          const Text('Controles para LED', style: TextStyle(fontSize: 18.0)),
+          const Text('Control LED', style: TextStyle(fontSize: 18.0)),
           const SizedBox(height: 16.0),
           Row(
             children: [
               Expanded(
                 child: ActionButton(
-                  text: "Encender",
+                  text: "on",
                   color: Colors.green,
                   onTap: () => sendData("1"),
                 ),
@@ -201,7 +201,7 @@ class _MainPageState extends State<MainPage> {
               Expanded(
                 child: ActionButton(
                   color: Colors.red,
-                  text: "Apagar",
+                  text: "off",
                   onTap: () => sendData("0"),
                 ),
               ),
