@@ -8,7 +8,7 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'first.dart';
-import 'Second.dart';
+import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
 import 'sixth.dart';

@@ -1,6 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 //import 'dart:js_util';
-import 'package:equmaintain/signin/signinpaitent.dart';
+import 'package:equmaintain/signinpaitent.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -9,7 +9,7 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'first.dart';
-import 'Second.dart';
+import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
 //import 'sixth.dart';

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'first.dart';
-import 'signin/second.dart';
+import 'second.dart';
 import 'tenth.dart';
 import 'third.dart';
 import 'fourth.dart';

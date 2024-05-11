@@ -1,13 +1,13 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:grad_project/pages/second.dart';
-import '../fifth.dart';
-import '../main.dart';
-import '../first.dart';
-import '../third.dart';
-import '../fourth.dart';
+import 'fifth.dart';
+import 'main.dart';
+import 'first.dart';
+import 'third.dart';
+import 'fourth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../firebase_options.dart';
+import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 //signin doc

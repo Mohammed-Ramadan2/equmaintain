@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'main.dart';
 import 'first.dart';
-import 'signin/second.dart';
+import 'second.dart';
 import 'fourth.dart';
 import 'fifth.dart';
 //doctor angle screen

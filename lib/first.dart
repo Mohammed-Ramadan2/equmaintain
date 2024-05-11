@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'signin/second.dart';
+import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
 

@@ -1,9 +1,9 @@
 // import 'package:flutter/cupertino.dart';
-import 'package:equmaintain/signin/signinpaitent.dart';
+import 'package:equmaintain/signinpaitent.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'first.dart';
-import 'signin/second.dart';
+import 'second.dart';
 import 'firebase_auth_implementation/useless/seventh.dart';
 import 'third.dart';
 import 'fourth.dart';

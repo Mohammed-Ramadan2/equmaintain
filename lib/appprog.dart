@@ -1,8 +1,8 @@
 // import 'package:flutter/cupertino.dart';
-import 'package:equmaintain/signin/signinpaitent.dart';
+import 'package:equmaintain/signinpaitent.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'signin/second.dart';
+import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
 
