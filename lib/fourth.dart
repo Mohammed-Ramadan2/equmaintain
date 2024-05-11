@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'first.dart';
-import 'second.dart';
+import 'signin/second.dart';
 import 'third.dart';
 //doctor list
 void main() {

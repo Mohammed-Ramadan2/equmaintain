@@ -1,16 +1,19 @@
 // import 'package:flutter/cupertino.dart';
+import 'package:equmaintain/appprog.dart';
 import 'package:flutter/material.dart';
 // import 'package:grad_project/pages/second.dart';
-import 'fifth.dart';
-import 'main.dart';
-import 'first.dart';
-import 'third.dart';
-import 'fourth.dart';
+import '../fifth.dart';
+import '../main.dart';
+import '../first.dart';
+import '../third.dart';
+import '../fourth.dart';
+import '../signuppaitent.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'firebase_options.dart';
+import '../firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-//signin doc
+
+//sign in patient\\
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,24 +25,25 @@ void main()async{
     routes: {
       '/': (context) => const MyApp(),
       'first': (context) => const Firstpage(),
-      '/second': (context) =>   Secondpage(),
+      // '/second': (context) =>  Secondpage(),
       '/third': (context) =>  Thirdpage(),
       '/fourth': (context) => const Fourthpage(),
+      //  '/signuppaitent': (context) =>  SignuppageState(),
 
     },
   ));
 }
 
-class Secondpage extends StatefulWidget {
-  const Secondpage({super.key});
+class Signin extends StatefulWidget {
+  const Signin({super.key});
 
- @override
-  State<Secondpage> createState() => SecondpageState(); }
+  @override
+  State<Signin> createState() => SigninpageState(); }
 String? email;
 String? password;
 GlobalKey<FormState> formKey =GlobalKey();
 
-class SecondpageState extends State <Secondpage> {
+class SigninpageState extends State <Signin> {
   bool value = false;
   // This widget is the root of your application.
   @override
@@ -100,7 +104,7 @@ class SecondpageState extends State <Secondpage> {
                                       ),
                                     ]),
                                 const Text('log in to follow your exercises',
-                                    textAlign: TextAlign.center,
+                                    textAlign: TextAlign.left,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 15,)),
@@ -322,72 +326,72 @@ class SecondpageState extends State <Secondpage> {
                                 TextButton(style: TextButton.styleFrom(
                                     foregroundColor: Colors.grey),
                                     onPressed: () {
-                                      Navigator.push( context, MaterialPageRoute(builder: (context) =>  Fifthpage()),);
+                                      Navigator.push( context, MaterialPageRoute(builder: (context) =>  signup()),);
 
                                     },
                                     child: const Text('Create new account',
                                         style: TextStyle(fontSize: 15))
                                 ),
                                 SizedBox(
-                                  width: 150,
-                                  child: TextButton(style: TextButton.styleFrom(
-                                      backgroundColor: Colors.teal,
-                                      foregroundColor: Colors.white),
-                                      onPressed: () async {
-                                        await Firebase.initializeApp(options:
+                                    width: 150,
+                                    child: TextButton(style: TextButton.styleFrom(
+                                        backgroundColor: Colors.teal,
+                                        foregroundColor: Colors.white),
+                                        onPressed: () async {
+                                          await Firebase.initializeApp(options:
 
-                                        DefaultFirebaseOptions.currentPlatform,);
-                                         if (formKey.currentState!.validate());
-                                         {
-                                           try {
-                                             UserCredential user = await FirebaseAuth
-                                                 .instance
-                                                 .signInWithEmailAndPassword(
-                                                 email: email!,
-                                                 password: password!);
-                                             Fluttertoast.showToast(
-                                                 msg: "You logged in successfully",
-                                                 toastLength: Toast
-                                                     .LENGTH_SHORT,
-                                                 gravity: ToastGravity.CENTER,
-                                                 timeInSecForIosWeb: 1,
-                                                 backgroundColor: Colors
-                                                     .black45,
-                                                 textColor: Colors.white,
-                                                 fontSize: 16.0
-                                             );
-                                             Navigator.push(context,
-                                               MaterialPageRoute(
-                                                   builder: (context) =>
-                                                       Firstpage()),);
-                                           } on FirebaseAuthException catch (e) {
-                                             Fluttertoast.showToast(
-                                                 msg: e.message.toString(),
-                                                 toastLength: Toast
-                                                     .LENGTH_SHORT,
-                                                 //  gravity: ToastGravity.CENTER,
-                                                 // timeInSecForIosWeb: 1,
-                                                 backgroundColor: Colors
-                                                     .black45,
-                                                 textColor: Colors.white,
-                                                 fontSize: 16.0
-                                             );
-                                           }
-                                           catch (e) {
-                                             Fluttertoast.showToast(
-                                                 msg: "There was an error, please try again",
-                                                 toastLength: Toast.LENGTH_SHORT,
-                                                 gravity: ToastGravity.CENTER,
-                                                 timeInSecForIosWeb: 1,
-                                                 backgroundColor: Colors.black45,
-                                                 textColor: Colors.white,
-                                                 fontSize: 16.0);
-                                           }
-                                         }
-                                         },
+                                          DefaultFirebaseOptions.currentPlatform,);
+                                          if (formKey.currentState!.validate());
+                                          {
+                                            try {
+                                              UserCredential user = await FirebaseAuth
+                                                  .instance
+                                                  .signInWithEmailAndPassword(
+                                                  email: email!,
+                                                  password: password!);
+                                              Fluttertoast.showToast(
+                                                  msg: "You logged in successfully",
+                                                  toastLength: Toast
+                                                      .LENGTH_SHORT,
+                                                  gravity: ToastGravity.CENTER,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0
+                                              );
+                                              Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        appprog()),);
+                                            } on FirebaseAuthException catch (e) {
+                                              Fluttertoast.showToast(
+                                                  msg: e.message.toString(),
+                                                  toastLength: Toast
+                                                      .LENGTH_SHORT,
+                                                  //  gravity: ToastGravity.CENTER,
+                                                  // timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0
+                                              );
+                                            }
+                                            catch (e) {
+                                              Fluttertoast.showToast(
+                                                  msg: "There was an error, please try again",
+                                                  toastLength: Toast.LENGTH_SHORT,
+                                                  gravity: ToastGravity.CENTER,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors.black45,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0);
+                                            }
+                                          }
+                                        },
                                         //Navigator.push( context, MaterialPageRoute(builder: (context) =>  Firstpage()),);
-                                      child: const Text('Login',
-                                          style: TextStyle(fontSize: 20)))),
+                                        child: const Text('Login',
+                                            style: TextStyle(fontSize: 20)))),
                               ],
                             ),
                           )

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'main.dart';
 import 'first.dart';
-import 'second.dart';
+import 'signin/second.dart';
 import 'fourth.dart';
 import 'fifth.dart';
 //doctor angle screen
@@ -36,9 +36,7 @@ class Thirdpage extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            appBar: AppBar(
-              title: Text('Bluetooth'),
-            ),
+
             backgroundColor: Colors.teal[300],
             body: SingleChildScrollView(
               child: Column(children: [
@@ -50,8 +48,10 @@ class Thirdpage extends StatelessWidget {
                         height: 50,
                       ),
                       Row(children: [
+
                         const SizedBox(width: 10),
                         IconButton(
+
                           icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
@@ -171,7 +171,10 @@ class Thirdpage extends StatelessWidget {
                                     icon: const Icon(Icons.keyboard_arrow_up,
                                         size: 40),
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      sendData(anglecontroller.text);                   //up
+                                      sendData("U");
+                                    },
                                   ),
                                 ])),
                       ],
@@ -208,10 +211,13 @@ class Thirdpage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.keyboard_arrow_left,
+                                icon: const Icon(Icons.keyboard_arrow_left,                          //left
                                     size: 40),
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  sendData(anglecontroller.text);
+                                  sendData("L");
+                                },
                               ),
                             ]),
                       ),
@@ -255,10 +261,13 @@ class Thirdpage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.keyboard_arrow_right,
+                                  icon: const Icon(Icons.keyboard_arrow_right,                //right
                                       size: 40),
                                   color: Colors.white,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    sendData(anglecontroller.text);
+                                    sendData("R");
+                                  },
                                 ),
                               ]))
                     ]),
@@ -297,11 +306,12 @@ class Thirdpage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_down,
+                                    icon: const Icon(Icons.keyboard_arrow_down,                               //Down
                                         size: 40),
                                     color: Colors.white,
                                     onPressed: () {
                                       sendData(anglecontroller.text);
+                                      sendData("D");
                                     },
                                   ),
                                 ])),

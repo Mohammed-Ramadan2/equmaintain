@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'first.dart';
-import 'second.dart';
+import 'signin/second.dart';
 import 'tenth.dart';
 import 'third.dart';
 import 'fourth.dart';
@@ -18,11 +18,11 @@ void main() {
       '/': (context) => const MyApp(),
       'first': (context) => const Firstpage(),
       //  '/second': (context) =>  Secondpage(),
-      '/third': (context) => Thirdpage(),
+    //ظظ  '/third': (context) => Thirdpage(),
       '/fourth': (context) => const Fourthpage(),
       // '/fifth': (context) => const Fifthpage(),
       '/sixth': (context) => const Sixthpage(),
-      '/ninth': (context) => const Ninthpage(),
+      //'/ninth': (context) => const Ninthpage(),
     },
   ));
 }
@@ -158,8 +158,7 @@ class Sixthpage extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const Ninthpage()));
+                                                builder: (context) => Ninthpage()));
                                       },
                                       child: const Text('Angle',
                                           style: TextStyle(fontSize: 20))),
