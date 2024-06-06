@@ -85,7 +85,7 @@ class _MainPageState extends State<MainPage> {
           _infoDevice(),
           Expanded(child: _listDevices()),
           _inputSerial(),
-          _buttons(),
+       //   _buttons(),
         ],
       ),
     );
@@ -140,7 +140,7 @@ class _MainPageState extends State<MainPage> {
                       ListTile(
                         title: Text(device.name ?? device.address),
                         trailing: TextButton(
-                          child: const Text('Connected'),
+                          child: const Text('Connect'),
                           onPressed: () async {
                             setState(() => _isConnecting = true);
 
@@ -170,17 +170,17 @@ class _MainPageState extends State<MainPage> {
         child: const Text('Reset'),
         onPressed: () => setState(() => times = 0),
       ),
-      title: Padding(
+      /*title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
           "click (x$times)",
           style: const TextStyle(fontSize: 18.0),
         ),
-      ),
+      ),*/
     );
   }
 
-  Widget _buttons() {
+  /*Widget _buttons() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8.0),
       color: Colors.black12,
@@ -210,5 +210,5 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
-  }
+  }*/
 }

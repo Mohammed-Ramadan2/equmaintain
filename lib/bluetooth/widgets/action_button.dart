@@ -6,6 +6,7 @@ class ActionButton extends StatelessWidget {
     required this.color,
     required this.text,
     this.onTap,
+
   });
 
   final Color color;
@@ -23,6 +24,7 @@ class ActionButton extends StatelessWidget {
         child: SizedBox(
           height: 150.0,
           child: Center(
+
             child: Text(
               text,
               style: const TextStyle(fontSize: 18.0, color: Colors.white),

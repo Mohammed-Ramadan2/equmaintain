@@ -1,18 +1,16 @@
 // import 'package:flutter/cupertino.dart';
+import 'package:equmaintain/bluetooth/widgets/action_button.dart';
+
 import 'dart:convert';
 
 import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'package:get/get.dart';
 import 'main.dart';
 import 'first.dart';
-import 'second.dart';
 import 'fourth.dart';
-import 'fifth.dart';
 //doctor angle screen
 
-void main() {
+/*void main() {
   runApp(MaterialApp(
     // initialRoute: '/',
     routes: {
@@ -24,7 +22,7 @@ void main() {
       // '/fifth': (context) => const Fifthpage(),
     },
   ));
-}
+}*/
 
 class Thirdpage extends StatelessWidget {
   Thirdpage({super.key});
@@ -124,6 +122,7 @@ class Thirdpage extends StatelessWidget {
                                       ),
                                       textAlign: TextAlign.center,
                                       textAlignVertical: TextAlignVertical.top,
+                                      keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                           alignLabelWithHint: true,
                                           hintText: 'Angle',
@@ -167,15 +166,25 @@ class Thirdpage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_up,
-                                        size: 40),
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      sendData(anglecontroller.text);                   //up
-                                      sendData("U");
+                                  ActionButton(
+                                    text: "${"    Up    "}",
+                                    color: Colors.transparent,
+                                    onTap: () async{sendData('1');
+                                    Future.delayed(const Duration(milliseconds: 50),);
+                                    sendData(anglecontroller.text);
+
                                     },
                                   ),
+                                  // IconButton(
+                                  //   icon: const Icon(Icons.keyboard_arrow_up,
+                                  //       size: 40),
+                                  //   color: Colors.white,
+                                  //   onPressed: () {
+                                  //     //sendData(anglecontroller.text);                   //up
+                                  //    // sendData("U");
+                                  //     sendData("0");
+                                  //   },
+                                  // ),
                                 ])),
                       ],
                     ),
@@ -210,18 +219,17 @@ class Thirdpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              IconButton(
-                                icon: const Icon(Icons.keyboard_arrow_left,                          //left
-                                    size: 40),
-                                color: Colors.white,
-                                onPressed: () {
-                                  sendData(anglecontroller.text);
-                                  sendData("L");
+                              ActionButton(
+                                text: "${"   Left   "}",
+                                color: Colors.transparent,
+                                onTap: () async{sendData('2');
+                                Future.delayed(const Duration(milliseconds: 50),);
+                                sendData(anglecontroller.text);
                                 },
                               ),
                             ]),
                       ),
-                      SizedBox(
+                     /* SizedBox(
                         width: 60,
                         child: IconButton(
                           icon: const Icon(Icons.power_settings_new_outlined,
@@ -229,7 +237,47 @@ class Thirdpage extends StatelessWidget {
                           color: Colors.teal,
                           onPressed: () {},
                         ),
+                      ),*/
+                      Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(60),
+                                bottom: Radius.circular(60)),
+                            color: Colors.white24,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(
+                                  5.0,
+                                  0.0,
+                                ),
+                                blurRadius: 2.0,
+                                spreadRadius: -5.0,
+                              ),
+                              BoxShadow(
+                                color: Colors.teal,
+                                offset: Offset(-1.0, 0.0),
+                                blurRadius: 4.0,
+                                spreadRadius: -5.0,
+                              ),
+                              //BoxShadow
+                            ]),
+                        width: 70,
+                        height: 70,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ActionButton(
+                                text: "${"  Reset  "}",
+                                color: Colors.transparent,
+                                onTap: () async{sendData('#');
+                                Future.delayed(const Duration(milliseconds: 50),);
+                                },
+                              ),
+                            ]),
                       ),
+
                       Container(
                           decoration: const BoxDecoration(
                               borderRadius: BorderRadius.vertical(
@@ -260,13 +308,13 @@ class Thirdpage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                IconButton(
-                                  icon: const Icon(Icons.keyboard_arrow_right,                //right
-                                      size: 40),
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    sendData(anglecontroller.text);
-                                    sendData("R");
+                                ActionButton(
+                                  text: "${"  Right  "}",
+                                  color: Colors.transparent,
+                                  onTap: () async{sendData('3');
+                                  Future.delayed(const Duration(milliseconds: 50),);
+                                  sendData(anglecontroller.text);
+
                                   },
                                 ),
                               ]))
@@ -305,13 +353,13 @@ class Thirdpage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_down,                               //Down
-                                        size: 40),
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      sendData(anglecontroller.text);
-                                      sendData("D");
+                                  ActionButton(
+                                    text: "${" Down "}",
+                                    color: Colors.transparent,
+                                    onTap: () async{sendData('4');
+                                    Future.delayed(const Duration(milliseconds: 50),);
+                                    sendData(anglecontroller.text);
+
                                     },
                                   ),
                                 ])),
@@ -354,7 +402,9 @@ class Thirdpage extends StatelessWidget {
                               child: TextButton(
                                   style: TextButton.styleFrom(
                                       foregroundColor: Colors.white),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    sendData(anglecontroller.text);
+                                  },
                                   child: const Text('Apply',
                                       style: TextStyle(fontSize: 20))),
                             )
@@ -401,7 +451,7 @@ class Thirdpage extends StatelessWidget {
                                             builder: (context) =>
                                                 const MainPage()));
                                   },
-                                  child: const Text('connect bluetooth',
+                                  child: const Text('Bluetooth connection',
                                       style: TextStyle(fontSize: 20))),
                             )
                           ]),

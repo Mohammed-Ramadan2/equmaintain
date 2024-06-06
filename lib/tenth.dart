@@ -10,9 +10,9 @@ import 'sixth.dart';
 import 'firebase_auth_implementation/useless/seventh.dart';
 import 'firebase_auth_implementation/useless/eigtht.dart';
 
-//list
+//create to do list
 
-void main() {
+/*void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -28,7 +28,7 @@ void main() {
 
     },
   ));
-}
+}*/
 
 class Tenthpage extends StatefulWidget {
   const Tenthpage({super.key});

@@ -4,8 +4,8 @@ import 'main.dart';
 import 'first.dart';
 import 'second.dart';
 import 'third.dart';
-//doctor list
-void main() {
+//doctor to do list
+/*void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -16,7 +16,7 @@ void main() {
       '/fourth': (context) => const Fourthpage(),
     },
   ));
-}
+}*/
 
 class Fourthpage extends StatefulWidget {
   const Fourthpage({super.key});
