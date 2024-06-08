@@ -20,18 +20,7 @@ void main()async{
   await Firebase.initializeApp(options:
 
   DefaultFirebaseOptions.currentPlatform,);
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
-      // '/second': (context) =>  Secondpage(),
-      '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      //  '/signuppaitent': (context) =>  SignuppageState(),
-
-    },
-  ));
+  runApp(MaterialApp());
 }
 
 class Signin extends StatefulWidget {

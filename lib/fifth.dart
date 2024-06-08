@@ -2,23 +2,27 @@
 //import 'dart:js_util';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'register.dart';
 import 'main.dart';
 import 'first.dart';
 import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
 import 'sixth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
 
 
 //sign up doc
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
+
+
+
+void main() {
 
 
   runApp(MaterialApp(
@@ -41,9 +45,6 @@ void main() async{
 class Fifthpage extends StatefulWidget {
 //  const Fifthpage({super.key});
 
-
-
-  @override
   State<Fifthpage> createState() => FifthpageState(); }
 
 class FifthpageState extends State <Fifthpage> {
@@ -55,10 +56,10 @@ class FifthpageState extends State <Fifthpage> {
   String? documentId;
   String? data;
   GlobalKey<FormState> formKey =GlobalKey();
-  @override
+  final _auth=Firebase.initializeApp();
 
+  @override
   Widget build(BuildContext context) {
-    Firebase.initializeApp();
     // bool value= true;
     return ModalProgressHUD(
       inAsyncCall: isLoading,
@@ -394,7 +395,8 @@ class FifthpageState extends State <Fifthpage> {
                                           style: TextStyle(fontSize: 15))),
                                   SizedBox(
                                     width: 150,
-                                    child: TextButton(style: TextButton.styleFrom(
+                                    child: TextButton(
+                                        style: TextButton.styleFrom(
                                         backgroundColor: Colors.teal,
                                         foregroundColor: Colors.white),
                                         onPressed: () async {

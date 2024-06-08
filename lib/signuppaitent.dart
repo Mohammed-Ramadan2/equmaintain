@@ -24,20 +24,7 @@ void main() async{
 
   DefaultFirebaseOptions.currentPlatform,);
 
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      '/first': (context) => const Firstpage(),
-      //'/second': (context) =>   Secondpage(),
-      '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      // '/fifth': (context) => const Fifthpage(),
-      // '/Sixth': (context) => const Sixthpage(),
-      //  '/fourth': (context) => const Firebase_auth_ser(),
-
-    },
-  ));
+  runApp(MaterialApp());
 }
 
 class signup extends StatefulWidget {

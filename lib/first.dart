@@ -7,7 +7,7 @@ import 'fourth.dart';
 
 //list=app prog
 
-/*void main() {
+void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -19,7 +19,7 @@ import 'fourth.dart';
 
     },
   ));
-}*/
+}
 class Firstpage extends StatelessWidget {
   const Firstpage({super.key});
 

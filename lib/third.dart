@@ -5,24 +5,13 @@ import 'dart:convert';
 
 import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'first.dart';
-import 'fourth.dart';
+
+
 //doctor angle screen
 
-/*void main() {
-  runApp(MaterialApp(
-    // initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      '/first': (context) => const Firstpage(),
-      // '/second': (context) =>  Secondpage(),
-      '/third': (context) => Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      // '/fifth': (context) => const Fifthpage(),
-    },
-  ));
-}*/
+void main() {
+  runApp(MaterialApp());
+}
 
 class Thirdpage extends StatelessWidget {
   Thirdpage({super.key});
@@ -53,10 +42,10 @@ class Thirdpage extends StatelessWidget {
                           icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Firstpage()));
+                            //Navigator.push(
+                               // context,
+                                //MaterialPageRoute(
+                                   // builder: (context) => const Firstpage()));
                           },
                         ),
                         const SizedBox(width: 285),
@@ -169,10 +158,10 @@ class Thirdpage extends StatelessWidget {
                                   ActionButton(
                                     text: "${"    Up    "}",
                                     color: Colors.transparent,
-                                    onTap: () async{sendData('1');
-                                    Future.delayed(const Duration(milliseconds: 50),);
+                                    onTap: () async{sendData('4');
+                                   // Future.delayed(const Duration(milliseconds: 50),);
                                     sendData(anglecontroller.text);
-
+                                    sendData('-');
                                     },
                                   ),
                                   // IconButton(
@@ -222,9 +211,10 @@ class Thirdpage extends StatelessWidget {
                               ActionButton(
                                 text: "${"   Left   "}",
                                 color: Colors.transparent,
-                                onTap: () async{sendData('2');
-                                Future.delayed(const Duration(milliseconds: 50),);
+                                onTap: () async{sendData('1');
+                                //Future.delayed(const Duration(milliseconds: 50),);
                                 sendData(anglecontroller.text);
+                                sendData('-');
                                 },
                               ),
                             ]),
@@ -272,7 +262,8 @@ class Thirdpage extends StatelessWidget {
                                 text: "${"  Reset  "}",
                                 color: Colors.transparent,
                                 onTap: () async{sendData('#');
-                                Future.delayed(const Duration(milliseconds: 50),);
+                                //Future.delayed(const Duration(milliseconds: 50),);
+                                sendData('-');
                                 },
                               ),
                             ]),
@@ -311,10 +302,10 @@ class Thirdpage extends StatelessWidget {
                                 ActionButton(
                                   text: "${"  Right  "}",
                                   color: Colors.transparent,
-                                  onTap: () async{sendData('3');
-                                  Future.delayed(const Duration(milliseconds: 50),);
+                                  onTap: () async{sendData('2');
+                                 // Future.delayed(const Duration(milliseconds: 50),);
                                   sendData(anglecontroller.text);
-
+                                  sendData('-');
                                   },
                                 ),
                               ]))
@@ -356,10 +347,10 @@ class Thirdpage extends StatelessWidget {
                                   ActionButton(
                                     text: "${" Down "}",
                                     color: Colors.transparent,
-                                    onTap: () async{sendData('4');
-                                    Future.delayed(const Duration(milliseconds: 50),);
+                                    onTap: () async{sendData('3');
+                                   // Future.delayed(const Duration(milliseconds: 50),);
                                     sendData(anglecontroller.text);
-
+                                    sendData('-');
                                     },
                                   ),
                                 ])),
@@ -368,48 +359,7 @@ class Thirdpage extends StatelessWidget {
                     const SizedBox(
                       height: 160,
                     ),
-                    Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(60),
-                              bottom: Radius.circular(60)),
-                          color: Colors.white24,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(
-                                -2.0,
-                                0.0,
-                              ),
-                              blurRadius: 3.0,
-                              spreadRadius: -5.0,
-                            ),
-                            BoxShadow(
-                              color: Colors.teal,
-                              offset: Offset(-1.0, -3.0),
-                              blurRadius: 3.0,
-                              spreadRadius: -5.0,
-                            ),
-                            //BoxShadow
-                          ]),
-                      width: 120,
-                      height: 60,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: Colors.white),
-                                  onPressed: () {
-                                    sendData(anglecontroller.text);
-                                  },
-                                  child: const Text('Apply',
-                                      style: TextStyle(fontSize: 20))),
-                            )
-                          ]),
-                    ),
+
                     Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.vertical(

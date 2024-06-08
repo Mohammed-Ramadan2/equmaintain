@@ -12,11 +12,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 //signin doc
 
-void main()async{
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options:
-
-  DefaultFirebaseOptions.currentPlatform,);
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -386,7 +384,7 @@ class SecondpageState extends State <Secondpage> {
                                          }
                                          },
                                         //Navigator.push( context, MaterialPageRoute(builder: (context) =>  Firstpage()),);
-                                      child: const Text('Login',
+                                      child: const Text('Log in',
                                           style: TextStyle(fontSize: 20)))),
                               ],
                             ),

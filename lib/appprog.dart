@@ -10,17 +10,7 @@ import 'fourth.dart';
 
 
 void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      'first': (context) => const appprog(),
-      //'/second': (context) => const Secondpage(),
-      '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-
-    },
-  ));
+  runApp(MaterialApp());
 }
 class appprog extends StatelessWidget {
   const appprog({super.key});

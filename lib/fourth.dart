@@ -5,18 +5,9 @@ import 'first.dart';
 import 'second.dart';
 import 'third.dart';
 //doctor to do list
-/*void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
-     // '/second': (context) =>   Secondpage(),
-      '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-    },
-  ));
-}*/
+void main() {
+  runApp(MaterialApp());
+}
 
 class Fourthpage extends StatefulWidget {
   const Fourthpage({super.key});
@@ -65,10 +56,10 @@ class FourthpageState extends State <Fourthpage> {
                                         icon: const Icon(Icons.arrow_back),
                                         color: Colors.white,
                                         onPressed: () {
-                                          Navigator.push(
-                                              context, MaterialPageRoute(
-                                              builder: (
-                                                  context) => const Firstpage()));
+                                         // Navigator.push(
+                                          //    context, MaterialPageRoute(
+                                           //   builder: (
+                                             //     context) => const Firstpage()));
                                         },
                                         // size: 25,
                                       ),

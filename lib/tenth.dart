@@ -12,23 +12,9 @@ import 'firebase_auth_implementation/useless/eigtht.dart';
 
 //create to do list
 
-/*void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
-   //   '/second': (context) =>   Secondpage(),
-      '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      //'/fifth': (context) => const Fifthpage(),
-      '/Sixth': (context) => const Sixthpage(),
-     // '/Seventh': (context) => const Seventhpage(),
-    //  '/eigtht': (context) => const Eigthtpage(),
-
-    },
-  ));
-}*/
+void main() {
+  runApp(MaterialApp());
+}
 
 class Tenthpage extends StatefulWidget {
   const Tenthpage({super.key});

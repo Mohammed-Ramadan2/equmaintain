@@ -11,21 +11,9 @@ import 'ninth.dart';
 
 //doc angle screen
 
-/*void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
-      //  '/second': (context) =>  Secondpage(),
-    //ظظ  '/third': (context) => Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      // '/fifth': (context) => const Fifthpage(),
-      '/sixth': (context) => const Sixthpage(),
-      '/ninth': (context) =>  Ninthpage(),
-    },
-  ));
-}*/
+void main() {
+  runApp(MaterialApp());
+}
 
 class Sixthpage extends StatelessWidget {
   const Sixthpage({super.key});

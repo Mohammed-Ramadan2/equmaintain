@@ -14,17 +14,7 @@ import 'fifth.dart';
 //Patient angle screen = third
 
 void main() {
-  runApp(MaterialApp(
-    // initialRoute: '/',
-    routes: {
-      '/': (context) => const MyApp(),
-      '/first': (context) => const Firstpage(),
-      // '/second': (context) =>  Secondpage(),
-    //  '/third': (context) => Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
-      // '/fifth': (context) => const Fifthpage(),
-    },
-  ));
+  runApp(MaterialApp());
 }
 
 class Ninthpage extends StatelessWidget {
