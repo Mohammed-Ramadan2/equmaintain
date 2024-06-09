@@ -90,7 +90,7 @@ class FifthpageState extends State <Fifthpage> {
                                           icon: const Icon(Icons.arrow_back),
                                           color: Colors.white,
                                           onPressed: () {
-                                            Navigator.push(
+                                            Navigator.pop(
                                                 context, MaterialPageRoute(
                                                 builder: (
                                                     context) => const Secondpage()));
@@ -118,7 +118,7 @@ class FifthpageState extends State <Fifthpage> {
                                           // },
                                         ),
                                       ]),
-                                  const Text('SignUp',
+                                  const Text('Sign Up',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -388,7 +388,7 @@ class FifthpageState extends State <Fifthpage> {
                                   TextButton(style: TextButton.styleFrom(
                                       foregroundColor: Colors.grey),
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(
+                                        Navigator.pop(context, MaterialPageRoute(
                                             builder: (
                                                 context) => const Secondpage()),);
                                       },

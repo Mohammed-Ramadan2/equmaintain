@@ -18,7 +18,7 @@ import 'fourth.dart';
 
 
 //sign up paitent\\
-//rr
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -104,7 +104,7 @@ class SignuppageState extends State <signup> {
                                           // },
                                         ),
                                       ]),
-                                  const Text('SignUp',
+                                  const Text('Sign Up',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -421,7 +421,7 @@ class SignuppageState extends State <signup> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                    const Secondpage()),
+                                                    const Signin()),
                                               );} on FirebaseAuthException catch (e) {
                                               if (e.code == 'weak-password') {
                                                 Fluttertoast.showToast(

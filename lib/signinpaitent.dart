@@ -379,7 +379,7 @@ class SigninpageState extends State <Signin> {
                                           }
                                         },
                                         //Navigator.push( context, MaterialPageRoute(builder: (context) =>  Firstpage()),);
-                                        child: const Text('Login',
+                                        child: const Text('Log in',
                                             style: TextStyle(fontSize: 20)))),
                               ],
                             ),

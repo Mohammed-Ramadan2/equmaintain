@@ -1,26 +1,31 @@
 // import 'package:flutter/cupertino.dart';
 import 'dart:convert';
-
 import 'package:equmaintain/appprog.dart';
 import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
+import 'bluetooth/widgets/action_button.dart';
 import 'main.dart';
-import 'first.dart';
-import 'second.dart';
-import 'fourth.dart';
-import 'fifth.dart';
+import 'signinpaitent.dart';
+import 'sixth.dart';
+import 'dart:async';
 //Patient angle screen = third
 
 void main() {
-  runApp(MaterialApp());
+  runApp(MaterialApp(
+    routes: {
+      '/': (context) => const MyApp(),
+      '/Sixth': (context) => const Sixthpage(),
+      '/seventh': (context) => const Signin(),
+    },
+  ));
 }
 
 class Ninthpage extends StatelessWidget {
   Ninthpage({super.key});
   final anglecontroller = TextEditingController();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,57 @@ class Ninthpage extends StatelessWidget {
         home: Scaffold(
 
             backgroundColor: Colors.teal[300],
+            key: _scaffoldKey,
+            endDrawer: Drawer(
+              child: ListView(
+                padding: const EdgeInsets.all(0),
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
+                    ), //BoxDecoration
+                    child: UserAccountsDrawerHeader(
+                      decoration: BoxDecoration(color: Colors.teal),
+                      accountName: Text(
+                        "\nDr. Potato",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      accountEmail: Text("Drpotato123@gmail.com"),
+                      currentAccountPictureSize: Size.square(50),
+                      currentAccountPicture: CircleAvatar(
+                        backgroundColor: Color.fromARGB(100, 1, 224,206),
+                        child: Text(
+                          "P",
+                          style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
+                        ), //Text
+                      ), //circleAvatar
+                    ), //UserAccountDrawerHeader
+                  ), //DrawerHeader
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text(' My Profile '),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.edit),
+                    title: const Text(' Edit Profile '),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('LogOut'),
+                    onTap: () {
+                      Navigator.push( context, MaterialPageRoute(builder: (context) => const Signin()),);
+                    },
+                  ),
+                ],
+              ),
+
+            ),
             body: SingleChildScrollView(
               child: Column(children: [
                 SizedBox(
@@ -53,21 +109,23 @@ class Ninthpage extends StatelessWidget {
                           },
                         ),
                         const SizedBox(width: 285),
-                        const Icon(
-                          Icons.apps,
-                          size: 30,
+                        IconButton(
+                          icon: const Icon(Icons.apps_rounded),
                           color: Colors.white,
+                          onPressed: () {
+                            _scaffoldKey.currentState?.openEndDrawer();
+                          },
                         ),
                       ]),
                     ]),
                   ]),
                 ),
                 Container(
-                  height: 665,
+                  height: 700,
                   width: 500,
                   decoration: const BoxDecoration(
                     borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(20)),
+                    BorderRadius.vertical(top: Radius.circular(20),bottom: Radius.circular(20)),
                     color: Colors.white,
                   ),
                   child: Column(children: [
@@ -115,6 +173,7 @@ class Ninthpage extends StatelessWidget {
                                       ),
                                       textAlign: TextAlign.center,
                                       textAlignVertical: TextAlignVertical.top,
+                                      keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                           alignLabelWithHint: true,
                                           hintText: 'Angle',
@@ -158,15 +217,25 @@ class Ninthpage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_up,
-                                        size: 40),
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      sendData(anglecontroller.text);                   //up
-                                      sendData("U");
+                                  ActionButton(
+                                    text: "${"    Up    "}",
+                                    color: Colors.transparent,
+                                    onTap: () async{sendData('4');
+                                    // Future.delayed(const Duration(milliseconds: 50),);
+                                    sendData(anglecontroller.text);
+                                    sendData('-');
                                     },
                                   ),
+                                  // IconButton(
+                                  //   icon: const Icon(Icons.keyboard_arrow_up,
+                                  //       size: 40),
+                                  //   color: Colors.white,
+                                  //   onPressed: () {
+                                  //     //sendData(anglecontroller.text);                   //up
+                                  //    // sendData("U");
+                                  //     sendData("0");
+                                  //   },
+                                  // ),
                                 ])),
                       ],
                     ),
@@ -201,18 +270,18 @@ class Ninthpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              IconButton(
-                                icon: const Icon(Icons.keyboard_arrow_left,                          //left
-                                    size: 40),
-                                color: Colors.white,
-                                onPressed: () {
-                                  sendData(anglecontroller.text);
-                                  sendData("L");
+                              ActionButton(
+                                text: "${"   Left   "}",
+                                color: Colors.transparent,
+                                onTap: () async{sendData('1');
+                                //Future.delayed(const Duration(milliseconds: 50),);
+                                sendData(anglecontroller.text);
+                                sendData('-');
                                 },
                               ),
                             ]),
                       ),
-                      SizedBox(
+                      /* SizedBox(
                         width: 60,
                         child: IconButton(
                           icon: const Icon(Icons.power_settings_new_outlined,
@@ -220,7 +289,48 @@ class Ninthpage extends StatelessWidget {
                           color: Colors.teal,
                           onPressed: () {},
                         ),
+                      ),*/
+                      Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(60),
+                                bottom: Radius.circular(60)),
+                            color: Colors.white24,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(
+                                  -5.0,
+                                  0.0,
+                                ),
+                                blurRadius: 2.0,
+                                spreadRadius: -5.0,
+                              ),
+                              BoxShadow(
+                                color: Colors.teal,
+                                offset: Offset(-1.0, 0.0),
+                                blurRadius: 4.0,
+                                spreadRadius: -5.0,
+                              ),
+                              //BoxShadow
+                            ]),
+                        width: 70,
+                        height: 70,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ActionButton(
+                                text: "${"  Reset  "}",
+                                color: Colors.transparent,
+                                onTap: () async{sendData('#');
+                                //Future.delayed(const Duration(milliseconds: 50),);
+                                sendData('-');
+                                },
+                              ),
+                            ]),
                       ),
+
                       Container(
                           decoration: const BoxDecoration(
                               borderRadius: BorderRadius.vertical(
@@ -251,13 +361,13 @@ class Ninthpage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                IconButton(
-                                  icon: const Icon(Icons.keyboard_arrow_right,                //right
-                                      size: 40),
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    sendData(anglecontroller.text);
-                                    sendData("R");
+                                ActionButton(
+                                  text: "${"  Right  "}",
+                                  color: Colors.transparent,
+                                  onTap: () async{sendData('2');
+                                  // Future.delayed(const Duration(milliseconds: 50),);
+                                  sendData(anglecontroller.text);
+                                  sendData('-');
                                   },
                                 ),
                               ]))
@@ -296,13 +406,13 @@ class Ninthpage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.keyboard_arrow_down,                               //Down
-                                        size: 40),
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      sendData(anglecontroller.text);
-                                      sendData("D");
+                                  ActionButton(
+                                    text: "${" Down "}",
+                                    color: Colors.transparent,
+                                    onTap: () async{sendData('3');
+                                    // Future.delayed(const Duration(milliseconds: 50),);
+                                    sendData(anglecontroller.text);
+                                    sendData('-');
                                     },
                                   ),
                                 ])),
@@ -311,6 +421,7 @@ class Ninthpage extends StatelessWidget {
                     const SizedBox(
                       height: 160,
                     ),
+
                     Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.vertical(
@@ -336,64 +447,26 @@ class Ninthpage extends StatelessWidget {
                             //BoxShadow
                           ]),
                       width: 120,
-                      height: 60,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: Colors.white),
-                                  onPressed: () {},
-                                  child: const Text('Apply',
-                                      style: TextStyle(fontSize: 20))),
-                            )
-                          ]),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(60),
-                              bottom: Radius.circular(60)),
-                          color: Colors.white24,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(
-                                -2.0,
-                                0.0,
-                              ),
-                              blurRadius: 3.0,
-                              spreadRadius: -5.0,
-                            ),
-                            BoxShadow(
-                              color: Colors.teal,
-                              offset: Offset(-1.0, -3.0),
-                              blurRadius: 3.0,
-                              spreadRadius: -5.0,
-                            ),
-                            //BoxShadow
-                          ]),
-                      width: 200,
                       height: 50,
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 200,
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: Colors.white),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            const MainPage()));
-                                  },
-                                  child: const Text('connect bluetooth',
-                                      style: TextStyle(fontSize: 20))),
+                              width: 120,
+                              child: IconButton(
+
+                                icon: const Icon(Icons.bluetooth_connected),
+                                color: Colors.white,
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.white),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const MainPage()));
+                                },
+                              ),
                             )
                           ]),
                     ),

@@ -1,11 +1,12 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:equmaintain/signinpaitent.dart';
+import 'package:equmaintain/tenth.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
-
+import 'ninth.dart';
 //app programs patient=first
 
 
@@ -44,7 +45,7 @@ class appprog extends StatelessWidget {
                         const SizedBox(
                             width:50
                         ),
-                        const Text('Dr.Potato',
+                        const Text('Programs',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -142,7 +143,7 @@ class appprog extends StatelessWidget {
                                         foregroundColor: Colors.teal),
                                         onPressed: (){
                                           Navigator.push(context, MaterialPageRoute(
-                                              builder: (context) =>  Thirdpage()));
+                                              builder: (context) =>   Ninthpage()));
                                         },child: const Text('Control angle', style: TextStyle(fontSize: 20))),
                                   ]), ),
 
@@ -181,8 +182,8 @@ class appprog extends StatelessWidget {
                                       foregroundColor: Colors.teal,) ,
                                         onPressed: (){
                                           Navigator.push(context, MaterialPageRoute(
-                                              builder: (context) => const Fourthpage()));
-                                        },child: const Text('Create To Do list', style: TextStyle(fontSize: 20))),
+                                              builder: (context) => const Tenthpage()));
+                                        },child: const Text('Show list', style: TextStyle(fontSize: 20))),
                                   ]), ),
 
 
