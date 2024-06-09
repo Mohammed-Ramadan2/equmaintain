@@ -1,13 +1,21 @@
 // import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'main.dart';
 import 'second.dart';
 import 'third.dart';
 import 'fourth.dart';
+import 'add_data.dart';
 
 //list=app prog
+final auth =FirebaseAuth.instance;
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -16,6 +24,7 @@ void main() {
       //'/second': (context) => const Secondpage(),
       '/third': (context) =>  Thirdpage(),
       '/fourth': (context) => const Fourthpage(),
+
 
     },
   ));
@@ -26,13 +35,64 @@ class Firstpage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
 
         home: Scaffold(
           backgroundColor: Colors.teal[300],
+          key: _scaffoldKey,
+          endDrawer: Drawer(
+            child: ListView(
+              padding: const EdgeInsets.all(0),
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                  ), //BoxDecoration
 
+                 child: UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(color: Colors.teal),
+                    accountName: Text(
+                      "\nDr. Potato",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    accountEmail: Text("Drpotato123@gmail.com"),
+                    currentAccountPictureSize: Size.square(50),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundColor: Color.fromARGB(100, 1, 224,206),
+                      child: Text(
+                        "P",
+                        style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
+                      ), //Text
+                    ), //circleAvatar
+                  ), //UserAccountDrawerHeader
+                ), //DrawerHeader
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text(' My Profile '),
+                  onTap: () {
+
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.edit),
+                  title: const Text(' Edit Profile '),
+                  onTap: () {
+
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.logout),
+                  title: const Text('LogOut'),
+                  onTap: () {
+                    Navigator.push( context, MaterialPageRoute(builder: (context) => const Secondpage()),);
+                  },
+                ),
+              ],
+            ),
+
+          ),
           body: SingleChildScrollView(
               child: Column(
                 children:[
@@ -52,7 +112,7 @@ class Firstpage extends StatelessWidget {
                           const SizedBox(
                               width:50
                           ),
-                          const Text('Dr.Potato',
+                          const Text('App List',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -63,14 +123,14 @@ class Firstpage extends StatelessWidget {
                           ),
                           // IconButton(
                           //   icon:
-                            const Icon(
-                              Icons.apps,
-                           size: 30,
-                           color: Colors.white,
-                           ),
-                            // onPressed: (){
-                            //
-                            // },
+                          IconButton(
+                            icon: Icon(Icons.apps,
+                              size: 30,),
+                            color: Colors.white,
+                            onPressed: () {
+                              _scaffoldKey.currentState?.openEndDrawer();
+                            },
+                          ),
                           ]),
                       // child:
 
@@ -189,7 +249,7 @@ class Firstpage extends StatelessWidget {
                                         foregroundColor: Colors.teal,) ,
                                         onPressed: (){
                                           Navigator.push(context, MaterialPageRoute(
-                                              builder: (context) => const Fourthpage()));
+                                              builder: (context) =>  Fourthpage()));
                                         },child: const Text('Create To Do list', style: TextStyle(fontSize: 20))),
                                 ]), ),
 

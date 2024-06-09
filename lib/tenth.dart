@@ -1,19 +1,16 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'first.dart';
-import 'second.dart';
-import 'third.dart';
-import 'fourth.dart';
-import 'fifth.dart';
 import 'sixth.dart';
+import 'signinpaitent.dart';
 import 'firebase_auth_implementation/useless/seventh.dart';
 import 'firebase_auth_implementation/useless/eigtht.dart';
 
 //create to do list
 
 void main() {
-  runApp(MaterialApp());
+  runApp(MaterialApp(
+
+  ));
 }
 
 class Tenthpage extends StatefulWidget {
@@ -33,6 +30,7 @@ class TenthpageState extends State <Tenthpage> {
   //   super.initState();
   // }
   // This widget is the root of your application.
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     // bool value= true;
@@ -41,7 +39,57 @@ class TenthpageState extends State <Tenthpage> {
 
       home: Scaffold(
         backgroundColor: Colors.teal[300],
+        key: _scaffoldKey,
+        endDrawer: Drawer(
+          child: ListView(
+            padding: const EdgeInsets.all(0),
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                ), //BoxDecoration
+                child: UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(color: Colors.teal),
+                  accountName: Text(
+                    "\nDr. Potato",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  accountEmail: Text("Drpotato123@gmail.com"),
+                  currentAccountPictureSize: Size.square(50),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Color.fromARGB(100, 1, 224,206),
+                    child: Text(
+                      "P",
+                      style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
+                    ), //Text
+                  ), //circleAvatar
+                ), //UserAccountDrawerHeader
+              ), //DrawerHeader
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text(' My Profile '),
+                onTap: () {
 
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.edit),
+                title: const Text(' Edit Profile '),
+                onTap: () {
+
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('LogOut'),
+                onTap: () {
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => const Signin()),);
+                },
+              ),
+            ],
+          ),
+
+        ),
         body: SingleChildScrollView(
             child: Column(
                 children: [
@@ -73,10 +121,12 @@ class TenthpageState extends State <Tenthpage> {
                                       const SizedBox(
                                           width: 300
                                       ),
-                                      const Icon(
-                                        Icons.apps,
-                                        size: 30,
+                                      IconButton(
+                                        icon: const Icon(Icons.apps_rounded),
                                         color: Colors.white,
+                                        onPressed: () {
+                                          _scaffoldKey.currentState?.openEndDrawer();
+                                        },
                                       ),
                                     ]),
                               ]),

@@ -1,8 +1,10 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:equmaintain/bluetooth/widgets/action_button.dart';
-
+import 'main.dart';
+import 'first.dart';
+import 'second.dart';
+import 'fourth.dart';
 import 'dart:convert';
-
 import 'package:equmaintain/bluetooth/main_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +12,23 @@ import 'package:flutter/material.dart';
 //doctor angle screen
 
 void main() {
-  runApp(MaterialApp());
+  runApp(MaterialApp(
+
+      routes: {
+        '/': (context) => const MyApp(),
+        '/first': (context) => const Firstpage(),
+        '/second': (context) => const Secondpage(),
+        '/third': (context) => Thirdpage(),
+        '/fourth': (context) => Fourthpage(),
+      }
+  ));
+
 }
 
 class Thirdpage extends StatelessWidget {
   Thirdpage({super.key});
   final anglecontroller = TextEditingController();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,6 +37,57 @@ class Thirdpage extends StatelessWidget {
         home: Scaffold(
 
             backgroundColor: Colors.teal[300],
+            key: _scaffoldKey,
+            endDrawer: Drawer(
+              child: ListView(
+                padding: const EdgeInsets.all(0),
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
+                    ), //BoxDecoration
+                    child: UserAccountsDrawerHeader(
+                      decoration: BoxDecoration(color: Colors.teal),
+                      accountName: Text(
+                        "\nDr. Potato",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      accountEmail: Text("Drpotato123@gmail.com"),
+                      currentAccountPictureSize: Size.square(50),
+                      currentAccountPicture: CircleAvatar(
+                        backgroundColor: Color.fromARGB(100, 1, 224,206),
+                        child: Text(
+                          "P",
+                          style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
+                        ), //Text
+                      ), //circleAvatar
+                    ), //UserAccountDrawerHeader
+                  ), //DrawerHeader
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text(' My Profile '),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.edit),
+                    title: const Text(' Edit Profile '),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('LogOut'),
+                    onTap: () {
+                      Navigator.push( context, MaterialPageRoute(builder: (context) => const Secondpage()),);
+                    },
+                  ),
+                ],
+              ),
+
+            ),
             body: SingleChildScrollView(
               child: Column(children: [
                 SizedBox(
@@ -42,28 +105,30 @@ class Thirdpage extends StatelessWidget {
                           icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
-                            //Navigator.push(
-                               // context,
-                                //MaterialPageRoute(
-                                   // builder: (context) => const Firstpage()));
+                            Navigator.push(
+                               context,
+                                MaterialPageRoute(
+                                   builder: (context) => const Firstpage()));
                           },
                         ),
                         const SizedBox(width: 285),
-                        const Icon(
-                          Icons.apps,
-                          size: 30,
+                        IconButton(
+                          icon: const Icon(Icons.apps_rounded),
                           color: Colors.white,
+                          onPressed: () {
+                            _scaffoldKey.currentState?.openEndDrawer();
+                          },
                         ),
                       ]),
                     ]),
                   ]),
                 ),
                 Container(
-                  height: 665,
+                  height: 700,
                   width: 500,
                   decoration: const BoxDecoration(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20)),
+                        BorderRadius.vertical(top: Radius.circular(20),bottom: Radius.circular(20)),
                     color: Colors.white,
                   ),
                   child: Column(children: [
@@ -238,7 +303,7 @@ class Thirdpage extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.grey,
                                 offset: Offset(
-                                  5.0,
+                                  -5.0,
                                   0.0,
                                 ),
                                 blurRadius: 2.0,
@@ -384,14 +449,17 @@ class Thirdpage extends StatelessWidget {
                             ),
                             //BoxShadow
                           ]),
-                      width: 200,
+                      width: 120,
                       height: 50,
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 200,
-                              child: TextButton(
+                              width: 120,
+                              child: IconButton(
+
+                                icon: const Icon(Icons.bluetooth_connected),
+                                color: Colors.white,
                                   style: TextButton.styleFrom(
                                       foregroundColor: Colors.white),
                                   onPressed: () {
@@ -401,8 +469,7 @@ class Thirdpage extends StatelessWidget {
                                             builder: (context) =>
                                                 const MainPage()));
                                   },
-                                  child: const Text('Bluetooth connection',
-                                      style: TextStyle(fontSize: 20))),
+                                  ),
                             )
                           ]),
                     ),
