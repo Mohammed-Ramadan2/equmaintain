@@ -1,6 +1,8 @@
 // import 'package:flutter/cupertino.dart';
 //import 'dart:js_util';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equmaintain/signinpaitent.dart';
+import 'package:equmaintain/usermodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -35,12 +37,11 @@ class signup extends StatefulWidget {
   State<signup> createState() => SignuppageState(); }
 
 class SignuppageState extends State <signup> {
-
-  bool value = false;
   bool isLoading= false;
   String? email;
   String? password;
-  String? data;
+  String? Name;
+  // String? data;
   GlobalKey<FormState> formKey =GlobalKey();
 
   @override
@@ -158,6 +159,74 @@ class SignuppageState extends State <signup> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(60),
+                                            bottom: Radius.circular(60)),
+                                        color: Colors.white24,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(
+                                              -3.0,
+                                              0.0,
+                                            ),
+                                            blurRadius: 5.0,
+                                            spreadRadius: -5.0,
+                                          ),
+                                          BoxShadow(
+                                            color: Colors.white,
+                                            offset: Offset(-10.0, -10.0),
+                                            blurRadius: 1.0,
+                                            spreadRadius: -5.0,
+
+                                          ),
+                                          //BoxShadow
+                                        ]),
+                                    width: 250,
+                                    height: 85,
+                                    child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            width: 15,),
+                                          const Icon(
+                                            Icons.face,
+                                            size: 30,
+                                            color: Colors.teal,
+                                          ),
+                                          const SizedBox(
+                                            width: 15,),
+                                          SizedBox(
+                                            width: 150,
+                                            height: 200,
+                                            child: TextFormField(
+                                              //controller: _emailController,
+                                              validator: (data){
+                                                if(data!.isEmpty){
+
+                                                  return 'username is empty';
+                                                }
+                                              },
+                                              style: const TextStyle(fontSize: 15,
+                                                  color: Colors.black),
+                                              onChanged:(data)
+                                              {
+                                                Name = data;
+                                                // users.add(data);
+                                              },
+                                              decoration: const InputDecoration(
+                                                  labelText: 'Username',
+                                                  border: InputBorder.none,
+
+                                                  labelStyle: TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.teal)
+                                              ),
+                                              // onPressed: (){},child: const Text('Control angle', style: TextStyle(fontSize: 20))),
+                                            ),)
+                                        ]),),
 
                                   Container(
                                     decoration: const BoxDecoration(
@@ -323,22 +392,37 @@ class SignuppageState extends State <signup> {
                                           if (formKey.currentState!.validate()) {
 
                                             try {
-                                              UserCredential user = await FirebaseAuth.instance
+                                              UserCredential user = await FirebaseAuth
+                                                  .instance
                                                   .createUserWithEmailAndPassword(
-                                                  email: email!, password:password!);
+                                                  email: email!,
+                                                  password: password!);
+                                              UserModel newUser = UserModel(
+                                                  uid: user.user!.uid,
+                                                  name: Name,
+                                                  email: email);
+
+
+                                              await FirebaseFirestore.instance
+                                                  .collection('users')
+                                                  .doc(newUser.uid)
+                                                  .set(newUser.toMap());
+
                                               Fluttertoast.showToast(
-                                                  msg: "Your account created successfully",
+                                                  msg:
+                                                  "Your account created successfully",
                                                   toastLength: Toast.LENGTH_SHORT,
                                                   gravity: ToastGravity.CENTER,
                                                   timeInSecForIosWeb: 1,
                                                   backgroundColor: Colors.black45,
                                                   textColor: Colors.white,
-                                                  fontSize: 16.0
-                                              );
-                                              Navigator.pop(context, MaterialPageRoute(
-                                                  builder: (context) => const Secondpage()),);
-
-                                            } on FirebaseAuthException catch (e) {
+                                                  fontSize: 16.0);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                    const Secondpage()),
+                                              );} on FirebaseAuthException catch (e) {
                                               if (e.code == 'weak-password') {
                                                 Fluttertoast.showToast(
                                                     msg: "This Password is too weak",

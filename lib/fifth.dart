@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 //import 'dart:js_util';
+import 'package:equmaintain/usermodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -22,10 +23,11 @@ import 'dart:io';
 
 
 
-void main() {
-
+void main() async{
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(MaterialApp(
+
     initialRoute: '/',
     routes: {
       '/': (context) => const MyApp(),
@@ -48,15 +50,14 @@ class Fifthpage extends StatefulWidget {
   State<Fifthpage> createState() => FifthpageState(); }
 
 class FifthpageState extends State <Fifthpage> {
-  bool value = false;
+ // bool value = false;
   bool isLoading= false;
   String? email;
   String? password;
   String? Name;
-  String? documentId;
-  String? data;
+ // String? data;
   GlobalKey<FormState> formKey =GlobalKey();
-  final _auth=Firebase.initializeApp();
+
 
   @override
   Widget build(BuildContext context) {
@@ -399,32 +400,46 @@ class FifthpageState extends State <Fifthpage> {
                                         style: TextButton.styleFrom(
                                         backgroundColor: Colors.teal,
                                         foregroundColor: Colors.white),
-                                        onPressed: () async {
+                                        onPressed: () async { isLoading=true;
                                           await Firebase.initializeApp(options:
 
                                           DefaultFirebaseOptions.currentPlatform,);
-                                         Firebase.initializeApp();
+                                         //Firebase.initializeApp();
 
                                           if (formKey.currentState!.validate()) {
 
-                                            try {
-                                              UserCredential user = await FirebaseAuth.instance
-                                                  .createUserWithEmailAndPassword(
-                                                  email: email!, password:password!);
+    try {
+    UserCredential user = await FirebaseAuth
+        .instance
+        .createUserWithEmailAndPassword(
+    email: email!,
+    password: password!);
+    DocModel newUser = DocModel(
+    uid: user.user!.uid,
+    name: Name,
+    email: email);
 
-                                              Fluttertoast.showToast(
-                                                  msg: "Your account created successfully",
-                                                  toastLength: Toast.LENGTH_SHORT,
-                                                  gravity: ToastGravity.CENTER,
-                                                  timeInSecForIosWeb: 1,
-                                                  backgroundColor: Colors.black45,
-                                                  textColor: Colors.white,
-                                                  fontSize: 16.0
-                                              );
-                                              Navigator.pop(context, MaterialPageRoute(
-                                                  builder: (context) => const Secondpage()),);
 
-                                            } on FirebaseAuthException catch (e) {
+    await FirebaseFirestore.instance
+        .collection('doctor')
+        .doc(newUser.uid)
+        .set(newUser.toMap());
+
+    Fluttertoast.showToast(
+    msg:
+    "Your account created successfully",
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.CENTER,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Colors.black45,
+    textColor: Colors.white,
+    fontSize: 16.0);
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) =>
+    const Secondpage()),
+    );} on FirebaseAuthException catch (e) {
                                               if (e.code == 'weak-password') {
                                                 Fluttertoast.showToast(
                                                     msg: "This Password is too weak",
@@ -457,7 +472,9 @@ class FifthpageState extends State <Fifthpage> {
                                                   fontSize: 16.0);
                                             }
 
-                                          }else{}
+                                          }else{setState(() {isLoading= false;
+
+                                          });}
 
                                           //Navigator.push(context, MaterialPageRoute(
                                           //  builder: (
