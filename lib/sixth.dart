@@ -6,7 +6,7 @@ import 'second.dart';
 import 'tenth.dart';
 import 'ninth.dart';
 
-//doc angle screen
+////doc angle screen
 
 void main() {
   runApp(MaterialApp(

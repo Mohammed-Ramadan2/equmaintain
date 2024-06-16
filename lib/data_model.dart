@@ -1,3 +1,4 @@
+//
 class DataModel {
   final String title;
   final String text;
