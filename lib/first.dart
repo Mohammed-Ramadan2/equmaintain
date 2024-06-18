@@ -20,18 +20,18 @@ void main() async{
     initialRoute: '/',
     routes: {
       '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
+      'first': (context) =>  Firstpage(),
       //'/second': (context) => const Secondpage(),
       '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
+      '/fourth': (context) =>  Fourthpage(),
 
 
     },
   ));
 }
 class Firstpage extends StatelessWidget {
-  const Firstpage({super.key});
-
+   Firstpage({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -50,42 +50,37 @@ class Firstpage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.teal,
                   ), //BoxDecoration
-
-                 child: UserAccountsDrawerHeader(
+                  child: UserAccountsDrawerHeader(
                     decoration: BoxDecoration(color: Colors.teal),
                     accountName: Text(
-                      "\nDr. Potato",
-                      style: TextStyle(fontSize: 20),
+                      "Navigation Menu ",
+                      style: TextStyle(fontSize: 30),
                     ),
-                    accountEmail: Text("Drpotato123@gmail.com"),
-                    currentAccountPictureSize: Size.square(50),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Color.fromARGB(100, 1, 224,206),
-                      child: Text(
-                        "P",
-                        style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
-                      ), //Text
-                    ), //circleAvatar
+                    accountEmail: Text(" "),
+                    currentAccountPictureSize: Size.square(50), //circleAvatar
                   ), //UserAccountDrawerHeader
                 ), //DrawerHeader
                 ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text(' My Profile '),
+                  leading: const Icon(Icons.control_camera),
+                  title: const Text(' Control angle '),
                   onTap: () {
-
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => Thirdpage()));
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.edit),
-                  title: const Text(' Edit Profile '),
+                  leading: const Icon(Icons.assignment_outlined),
+                  title: const Text(' Create To Do list '),
                   onTap: () {
-
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) =>  Fourthpage()));
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.logout),
                   title: const Text('LogOut'),
                   onTap: () {
+                    _auth.signOut();
                     Navigator.push( context, MaterialPageRoute(builder: (context) => const Secondpage()),);
                   },
                 ),

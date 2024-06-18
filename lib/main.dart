@@ -16,10 +16,10 @@ void main() {
     initialRoute: '/',
     routes: {
       '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
+      'first': (context) =>  Firstpage(),
       //'/second': (context) =>  Secondpage(),
       '/third': (context) =>  Thirdpage(),
-      '/fourth': (context) => const Fourthpage(),
+      '/fourth': (context) =>  Fourthpage(),
       // '/seventh': (context) =>  Seventhpage(),
 
 

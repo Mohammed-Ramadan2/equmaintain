@@ -12,7 +12,7 @@ void main() {
   runApp(MaterialApp(
     routes: {
       '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
+      'first': (context) =>  Firstpage(),
       '/second': (context) => const Secondpage(),
       '/seventh': (context) => const Signin(),
 
@@ -43,32 +43,27 @@ class Sixthpage extends StatelessWidget {
                 child: UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Colors.teal),
                   accountName: Text(
-                    "\nDr. Potato",
-                    style: TextStyle(fontSize: 20),
+                    "Navigation Menu ",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  accountEmail: Text("Drpotato123@gmail.com"),
-                  currentAccountPictureSize: Size.square(50),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundColor: Color.fromARGB(100, 1, 224,206),
-                    child: Text(
-                      "P",
-                      style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
-                    ), //Text
-                  ), //circleAvatar
+                  accountEmail: Text(" "),
+                  currentAccountPictureSize: Size.square(50), //circleAvatar
                 ), //UserAccountDrawerHeader
               ), //DrawerHeader
               ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text(' My Profile '),
+                leading: const Icon(Icons.control_camera),
+                title: const Text(' Control angle '),
                 onTap: () {
-
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => Ninthpage()));
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text(' Edit Profile '),
+                leading: const Icon(Icons.assignment_outlined),
+                title: const Text(' Create To Do list '),
                 onTap: () {
-
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => const Tenthpage()));
                 },
               ),
               ListTile(

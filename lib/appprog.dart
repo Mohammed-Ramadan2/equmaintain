@@ -45,7 +45,7 @@ class appprog extends StatelessWidget {
                         const SizedBox(
                             width:50
                         ),
-                        const Text('Programs',
+                        const Text('App List',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,

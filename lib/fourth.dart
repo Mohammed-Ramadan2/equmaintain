@@ -16,7 +16,7 @@ void main() {
   runApp(MaterialApp(
     routes: {
       '/': (context) => const MyApp(),
-      'first': (context) => const Firstpage(),
+      'first': (context) => Firstpage(),
       '/second': (context) => const Secondpage(),
       '/third': (context) => Thirdpage(),
     },
@@ -24,17 +24,17 @@ void main() {
 }
 
 class Fourthpage extends StatefulWidget {
-  const Fourthpage({super.key});
-
+   Fourthpage({super.key});
   @override
   State<Fourthpage> createState() => FourthpageState();
+
 }
 
 class FourthpageState extends State<Fourthpage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<DataModel> data = [];
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   void _saveddata(DataModel expense) {
     setState(() {
       data.add(expense);
@@ -87,47 +87,45 @@ class FourthpageState extends State<Fourthpage> {
               const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.teal,
-                ),
+                ), //BoxDecoration
                 child: UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Colors.teal),
                   accountName: Text(
-                    "\nDr. Potato",
-                    style: TextStyle(fontSize: 20),
+                    "Navigation Menu ",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  accountEmail: Text("Drpotato123@gmail.com"),
-                  currentAccountPictureSize: Size.square(50),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundColor: Color.fromARGB(100, 1, 224, 206),
-                    child: Text(
-                      "P",
-                      style:
-                          TextStyle(fontSize: 30.0, color: Colors.greenAccent),
-                    ),
-                  ),
-                ),
+                  accountEmail: Text(" "),
+                  currentAccountPictureSize: Size.square(50), //circleAvatar
+                ), //UserAccountDrawerHeader
+              ), //DrawerHeader
+              ListTile(
+                leading: const Icon(Icons.control_camera),
+                title: const Text(' Control angle '),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => Thirdpage()));
+                },
               ),
               ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text(' My Profile '),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text(' Edit Profile '),
-                onTap: () {},
+                leading: const Icon(Icons.assignment_outlined),
+                title: const Text(' Create To Do list '),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => Fourthpage()));
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('LogOut'),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Secondpage()),
-                  );
+
+                  _auth.signOut();
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => const Secondpage()),);
                 },
               ),
             ],
           ),
+
         ),
         body: CustomScrollView(slivers: [
           SliverToBoxAdapter(
@@ -148,7 +146,7 @@ class FourthpageState extends State<Fourthpage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Firstpage()),
+                                    builder: (context) =>  Firstpage()),
                               );
                             },
                           ),

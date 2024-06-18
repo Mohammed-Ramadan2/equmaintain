@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:equmaintain/appprog.dart';
 import 'package:equmaintain/bluetooth/main_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'bluetooth/widgets/action_button.dart';
 import 'main.dart';
 import 'signinpaitent.dart';
 import 'sixth.dart';
+import 'tenth.dart';
 import 'dart:async';
 //Patient angle screen = third
 
@@ -25,6 +27,7 @@ void main() {
 class Ninthpage extends StatelessWidget {
   Ninthpage({super.key});
   final anglecontroller = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   // This widget is the root of your application.
   @override
@@ -46,38 +49,34 @@ class Ninthpage extends StatelessWidget {
                     child: UserAccountsDrawerHeader(
                       decoration: BoxDecoration(color: Colors.teal),
                       accountName: Text(
-                        "\nDr. Potato",
-                        style: TextStyle(fontSize: 20),
+                        "Navigation Menu ",
+                        style: TextStyle(fontSize: 30),
                       ),
-                      accountEmail: Text("Drpotato123@gmail.com"),
-                      currentAccountPictureSize: Size.square(50),
-                      currentAccountPicture: CircleAvatar(
-                        backgroundColor: Color.fromARGB(100, 1, 224,206),
-                        child: Text(
-                          "P",
-                          style: TextStyle(fontSize: 30.0, color: Colors.greenAccent),
-                        ), //Text
-                      ), //circleAvatar
+                      accountEmail: Text(" "),
+                      currentAccountPictureSize: Size.square(50), //circleAvatar
                     ), //UserAccountDrawerHeader
                   ), //DrawerHeader
                   ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text(' My Profile '),
+                    leading: const Icon(Icons.control_camera),
+                    title: const Text(' Control angle '),
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => Ninthpage()));
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.edit),
-                    title: const Text(' Edit Profile '),
+                    leading: const Icon(Icons.assignment_outlined),
+                    title: const Text(' Create To Do list '),
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => const Tenthpage()));
                     },
                   ),
                   ListTile(
                     leading: const Icon(Icons.logout),
                     title: const Text('LogOut'),
                     onTap: () {
+                      _auth.signOut();
                       Navigator.push( context, MaterialPageRoute(builder: (context) => const Signin()),);
                     },
                   ),

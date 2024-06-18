@@ -53,7 +53,7 @@ class Adddata extends State<AddData> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Fourthpage()));
+                              builder: (context) =>  Fourthpage()));
                     },
                     // size: 25,
                   ),
